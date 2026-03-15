@@ -1,28 +1,44 @@
-import './App.css';
+import { useNavigate } from 'react-router-dom';
+import "./App.css";
 
 function App() {
+  const navigate = useNavigate(); // hook to navigate
+
+  const handleStartClick = () => {
+    navigate("/home"); // route to your new page
+  };
+  
+ 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src="Octocat.png" className="App-logo" alt="logo" />
-        <p>
-          GitHub Codespaces <span className="heart">♥️</span> React
-        </p>
-        <p className="small">
-          Edit <code>src/App.jsx</code> and save to reload.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </p>
-      </header>
+
+    <div className="app-container">
+      <div class="bean"></div>
+      <div class="bean"></div>
+      <div class="bean"></div>
+      <div class="bean"></div>
+      <div class="bean"></div>
+      <div class="bean"></div>
+      <div class="bean"></div>
+      <div class="bean"></div>
+      <div class="bean"></div>
+
+
+      {/*THIS IS START PAGE*/}
+      <div className="startpage">
+        <div className="logotxt">
+          <img src="textlogo.png" alt="" /> 
+        </div>
+        <div className="strtbutton" onClick={() => navigate('/home')}>
+          <img src="start.png" alt="Start Button" />
+        </div>
+
+      </div>
+      
     </div>
+
+      
+
+
   );
 }
 

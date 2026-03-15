@@ -1,31 +1,142 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
 }
 
-.App-logo {
-  height: 40vmin;
+.app-container {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  font-family: 'Press Start 2P', cursive;
+  color: #fff;
+  text-align: center;
+  overflow: hidden;
+}
+
+/* looping background */
+.app-container::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 100%;
+  background: url("frontcounter.png") repeat-x top left;
+  background-size: 50% 100%;
+  z-index: -2;
+  animation: loopBG 60s linear infinite;
+}
+
+/* overlay */
+.app-container::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(ellipse at center, 
+      rgba(0,0,0,0) 40%, 
+      rgba(0,0,0,0.8) 100%),
+    rgba(0,0,0,0.3);
+  z-index: -1;
   pointer-events: none;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+@keyframes loopBG {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
 }
 
-.App-link {
-  color: #61dafb;
+
+  .head{
+    display: flex;
+    flex-direction: column;
+  }
+
+
+.logotxt img{
+  padding-top: 10%;
+  transform: scale(150%);
+    position: relative; /* ← add this */
+  z-index: 1;         /* ← add this */
 }
 
-.heart {
-  color: #ff0000;
+
+
+
+
+/* StartPage.css */
+.startpage img {
+  max-width: 60%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+    position: relative; /* ← add this */
+  z-index: 1;         /* ← add this */
 }
 
-.small {
-  font-size: 0.75rem;
+
+
+
+
+
+@media (max-width: 768px) {
+  .about {
+    flex-direction: column;
+  }
+
+  .about img {
+    max-width: 60vw;
+  }
+}
+
+.bean {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  background: url('coffee-bean.png') no-repeat center/contain;
+  animation: fall 15s linear infinite;
+  z-index: 0; /* ← add this */
+
+}
+
+.bean:nth-child(1) { left: 3%;  animation-delay: -4s;   animation-duration: 13s; }
+.bean:nth-child(2) { left: 19%; animation-delay: -11s;  animation-duration: 17s; }
+.bean:nth-child(3) { left: 38%; animation-delay: -2s;   animation-duration: 15s; }
+.bean:nth-child(4) { left: 52%; animation-delay: -8s;   animation-duration: 12s; }
+.bean:nth-child(5) { left: 67%; animation-delay: -15s;  animation-duration: 19s; }
+.bean:nth-child(6) { left: 78%; animation-delay: -6s;   animation-duration: 14s; }
+.bean:nth-child(7) { left: 88%; animation-delay: -13s;  animation-duration: 11s; }
+.bean:nth-child(8) { left: 44%; animation-delay: -1s;   animation-duration: 16s; }
+.bean:nth-child(9) { left: 12%; animation-delay: -9s;   animation-duration: 18s; }
+
+@keyframes fall {
+  0%   { top: -50px;  transform: rotate(0deg)   translateX(0px); }
+  25%  { transform: rotate(90deg)  translateX(40px); }
+  50%  { transform: rotate(180deg) translateX(-30px); }
+  75%  { transform: rotate(270deg) translateX(50px); }
+  100% { top: 100vh;  transform: rotate(360deg) translateX(-20px); }
+}
+
+
+.strtbutton {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.strtbutton:hover {
+  transform: scale(1.05);
 }
