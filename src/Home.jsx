@@ -89,7 +89,7 @@ export default function Home() {
                 ‣ Loves cappucinos <br />
                 ‣ Cries over sentimental movies  <br />
                 ‣ Will you give me a chance? <br />
-                ‣ Runs Rosewell Diner
+                ‣ Runs Velvet Petal Cafe
               </p>
                <button
                   className="pick-btn3"
