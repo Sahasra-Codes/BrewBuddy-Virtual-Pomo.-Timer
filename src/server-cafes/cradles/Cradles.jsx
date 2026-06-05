@@ -52,6 +52,7 @@ const DEFAULT_CHECKS = [
 ];
 
 export default function Cradles() {
+  
   const welcomeMsg = "Hello! Welcome to Misty Cafe. Since you are a new customer, it's on the house~ But you can earn coins by studying and order drinks through the menu.";
   const passMsg    = "No worries! Your free drink offer will reset in 24 hours. Now we can start ur timer, feel free to change it however u want~ 🍵";
   const alreadyMsg = "Welcome back! Your free drink resets tomorrow. You can still order with coins though~";

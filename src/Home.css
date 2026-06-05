@@ -30,7 +30,7 @@ html, body {
   left: 0;
   width: 200%; /* two images side by side */
   height: 100%;
-  background: url("frontcounter.png") repeat-x top;
+  background: url("/frontcounter.png") repeat-x top;
   background-size: auto 100%; /* keeps proportion */
   z-index: -2;
   animation: loopBG 60s linear infinite; /* continuous sliding */
