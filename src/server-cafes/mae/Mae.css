@@ -1,0 +1,257 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+.mae-page {
+  background-image: url("maecafe.png");
+  background-size: cover; background-repeat: no-repeat;
+  background-position: center; height: 100vh;
+  font-family: 'Press Start 2P', cursive; position: relative; overflow: hidden;
+}
+.vid-bg {
+  position: fixed; top: 50%; left: 50%;
+  width: 177.78vh; height: 56.25vw; min-width: 100vw; min-height: 100vh;
+  transform: translate(-50%, -50%); z-index: 0; object-fit: cover; pointer-events: none;
+}
+.spotify-persistent {
+  position: fixed; bottom: 16px; right: 16px; z-index: 180;
+  border-radius: 14px; overflow: hidden; box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  border: 1px solid rgba(100,210,200,0.3); background: #030f12;
+}
+.coins-hud {
+  position: fixed; top: 16px; right: 16px;
+  background: linear-gradient(135deg, rgba(10,55,70,0.92), rgba(15,80,100,0.92));
+  color: #7eeee8; font-family: 'Press Start 2P', cursive; font-size: 9px;
+  padding: 10px 16px; border-radius: 20px; border: 2px solid rgba(80,210,200,0.45);
+  z-index: 200; backdrop-filter: blur(12px); display: flex; align-items: center; gap: 6px;
+  box-shadow: 0 4px 20px rgba(30,180,180,0.2);
+}
+.coin-icon { font-size: 14px; }
+.coin-count { font-size: 12px; color: #edfffe; }
+.coin-label { color: rgba(100,230,220,0.6); font-size: 7px; }
+.toolbar {
+  position: fixed; top: 16px; left: 16px;
+  display: flex; flex-direction: row; gap: 8px; z-index: 200;
+}
+.tool-btn {
+  font-size: 15px;
+  background: linear-gradient(160deg, rgba(10,70,90,0.88), rgba(5,50,65,0.88));
+  color: #b8f5f0; border: 2px solid rgba(60,200,190,0.32); border-radius: 12px;
+  width: 44px; height: 38px; cursor: pointer; backdrop-filter: blur(8px);
+  transition: transform 0.18s, background 0.18s, border-color 0.18s, box-shadow 0.18s;
+  display: flex; align-items: center; justify-content: center; box-shadow: 0 3px 12px rgba(0,0,0,0.35);
+}
+.tool-btn:hover {
+  transform: scale(1.1) translateY(-1px);
+  background: linear-gradient(160deg, rgba(20,160,160,0.4), rgba(10,110,120,0.4));
+  border-color: rgba(80,230,220,0.65); box-shadow: 0 0 16px rgba(40,200,200,0.35);
+}
+.tool-btn.active {
+  background: linear-gradient(160deg, rgba(20,160,160,0.5), rgba(10,110,120,0.5));
+  border-color: #50ddd8; box-shadow: 0 0 14px rgba(40,200,200,0.45);
+}
+.panel-container {
+  position: fixed; top: 66px; left: 16px; z-index: 200;
+  display: flex; flex-direction: column; gap: 10px;
+  max-height: calc(100vh - 80px); overflow-y: auto;
+}
+.bg-panel, .spotify-panel, .notes-panel {
+  background: linear-gradient(160deg, rgba(5,40,55,0.96), rgba(8,65,80,0.96));
+  border: 1px solid rgba(60,200,190,0.28); border-radius: 16px; padding: 16px;
+  color: #edfffe; width: 240px; backdrop-filter: blur(18px);
+  display: flex; flex-direction: column; gap: 10px; box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+}
+.notes-panel { max-height: 65vh; overflow-y: auto; }
+.notes-textarea {
+  font-family: 'Press Start 2P', cursive; font-size: 7px; padding: 10px;
+  border-radius: 10px; border: 1px solid rgba(60,200,190,0.25);
+  background: rgba(3,20,28,0.8); color: #edfffe;
+  width: 100%; box-sizing: border-box; resize: vertical; min-height: 80px; outline: none; line-height: 1.8;
+}
+.notes-textarea::placeholder { color: rgba(100,230,220,0.22); }
+.checklist { display: flex; flex-direction: column; gap: 6px; }
+.check-item { display: flex; align-items: center; gap: 8px; transition: opacity 0.2s; }
+.check-item.done { opacity: 0.4; }
+.check-item.done .check-label { text-decoration: line-through; }
+.check-box {
+  width: 20px; height: 20px; border-radius: 6px;
+  border: 2px solid rgba(60,200,190,0.48); background: rgba(80,240,230,0.04);
+  color: #7eeee8; font-size: 10px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  transition: background 0.15s, border-color 0.15s; font-family: 'Press Start 2P', cursive;
+}
+.check-box:hover { background: rgba(60,200,190,0.18); border-color: #50ddd8; }
+.check-label { font-size: 6.5px; color: #edfffe; flex: 1; line-height: 1.6; }
+.check-remove {
+  background: none; border: none; color: rgba(255,140,160,0.45);
+  font-size: 14px; cursor: pointer; padding: 0 2px; line-height: 1;
+  transition: color 0.15s; flex-shrink: 0;
+}
+.check-remove:hover { color: rgba(255,100,130,0.9); }
+.check-add-row { display: flex; gap: 6px; align-items: center; }
+.check-add-btn {
+  font-family: 'Press Start 2P', cursive; font-size: 14px;
+  background: linear-gradient(135deg, #30b8b0, #188880); color: #edfffe;
+  border: none; border-radius: 8px; width: 30px; height: 30px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  box-shadow: 0 3px 0 #0a5850; transition: transform 0.1s;
+}
+.check-add-btn:hover { transform: translateY(-1px); }
+.check-add-btn:active { transform: translateY(2px); }
+.bg-panel-title { font-size: 8px; color: #7eeee8; text-align: center; margin-bottom: 2px; letter-spacing: 1px; }
+.bg-presets { display: flex; flex-direction: column; gap: 6px; }
+.bg-preset-btn {
+  font-family: 'Press Start 2P', cursive; font-size: 7px; padding: 8px 10px;
+  border-radius: 10px; border: 1px solid rgba(60,200,190,0.25);
+  background: rgba(80,240,230,0.04); color: #edfffe; cursor: pointer;
+  text-align: left; transition: background 0.15s, border-color 0.15s;
+}
+.bg-preset-btn:hover { background: rgba(60,200,190,0.1); border-color: rgba(60,220,210,0.55); }
+.bg-preset-btn.active { background: rgba(30,180,170,0.2); border-color: #50ddd8; color: #7eeee8; }
+.bg-divider { font-size: 6.5px; color: rgba(80,230,220,0.3); text-align: center; letter-spacing: 1px; }
+.bg-input {
+  font-family: 'Press Start 2P', cursive; font-size: 7px; padding: 8px 10px;
+  border-radius: 8px; border: 1px solid rgba(60,200,190,0.25);
+  background: rgba(3,15,20,0.88); color: #edfffe;
+  width: 100%; box-sizing: border-box; outline: none;
+}
+.bg-input::placeholder { color: rgba(80,230,220,0.22); }
+.bg-upload-btn, .bg-clear-btn {
+  font-family: 'Press Start 2P', cursive; font-size: 7px; padding: 8px 10px;
+  border-radius: 10px; border: none; cursor: pointer;
+  transition: transform 0.1s, box-shadow 0.1s; width: 100%;
+}
+.bg-upload-btn { background: linear-gradient(135deg, #30b8b0, #188880); color: #edfffe; box-shadow: 0 4px 0 #0a5850; }
+.bg-upload-btn:hover { transform: translateY(-2px); }
+.bg-clear-btn { background: linear-gradient(135deg, #e07080, #b04058); color: #fff; box-shadow: 0 4px 0 #702030; }
+.bg-clear-btn:hover { transform: translateY(-2px); }
+
+/* ── Character — 340px ── */
+.mae-char { position: fixed; bottom: 0; left: 20px; z-index: 10; }
+.mae-char img {
+  height: 340px; width: auto; object-fit: contain;
+  filter: drop-shadow(0 10px 28px rgba(0,0,0,0.4));
+  transition: transform 0.12s ease; display: block;
+}
+.mae-char img.char-talking { transform: translateY(-4px); }
+
+.chat-bubble {
+  position: fixed; bottom: 328px; left: 280px; max-width: 340px; padding: 18px 22px;
+  background: linear-gradient(160deg, #f0fffe, #d8faf8); border-radius: 22px;
+  font-size: 9px; color: #083540;
+  box-shadow: 0 6px 28px rgba(0,0,0,0.18), 0 2px 0 rgba(50,200,190,0.2);
+  border: 2px solid rgba(50,200,190,0.3); z-index: 10; line-height: 1.9;
+}
+.chat-name { font-size: 10px; font-weight: bold; color: #188880; margin-bottom: 8px; letter-spacing: 1px; }
+.chat-bubble p { margin: 0; }
+.chat-bubble::after {
+  content: ''; position: absolute; bottom: -12px; left: 22px;
+  width: 0; height: 0; border: 12px solid transparent;
+  border-top-color: #d8faf8; border-bottom: 0;
+}
+.cursor { display: inline-block; width: 2px; background-color: #083540; animation: blink 0.7s infinite; margin-left: 2px; vertical-align: middle; }
+@keyframes blink { 0%,50%,100%{opacity:1} 25%,75%{opacity:0} }
+
+.button-row { position: fixed; bottom: 24px; left: 280px; display: flex; flex-wrap: wrap; gap: 10px; z-index: 10; }
+.menu-button {
+  font-family: 'Press Start 2P', cursive; font-size: 8px; padding: 13px 18px;
+  background: linear-gradient(135deg, #30b8b0, #188880); color: #edfffe;
+  border: none; border-radius: 14px; box-shadow: 0 6px 0 #0a5850, 0 8px 20px rgba(0,0,0,0.22);
+  cursor: pointer; transition: transform 0.12s, box-shadow 0.12s; letter-spacing: 0.5px; position: relative;
+}
+.menu-button::before {
+  content: ''; position: absolute; inset: 0; border-radius: 14px;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.15) 0%, transparent 60%); pointer-events: none;
+}
+.menu-button:hover { transform: translateY(-3px); box-shadow: 0 9px 0 #0a5850, 0 12px 24px rgba(0,0,0,0.28); }
+.menu-button:active { transform: translateY(5px); box-shadow: 0 1px 0 #0a5850; }
+.pass-btn {
+  background: linear-gradient(135deg, rgba(200,245,242,0.18), rgba(160,230,224,0.1));
+  box-shadow: 0 6px 0 rgba(0,0,0,0.28); border: 1.5px solid rgba(80,220,210,0.35); color: rgba(200,250,248,0.9);
+}
+.confirm-button { background: linear-gradient(135deg, #f4a060, #d07030); box-shadow: 0 6px 0 #904818; }
+.confirm-button:hover { box-shadow: 0 9px 0 #904818; }
+.order-btn { background: linear-gradient(135deg, #f4a060, #d07030); box-shadow: 0 6px 0 #904818; font-size: 7px; }
+.order-btn:hover { box-shadow: 0 9px 0 #904818; }
+
+.menu-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.72); backdrop-filter: blur(8px);
+  z-index: 500; display: flex; align-items: center; justify-content: center; animation: fadeIn 0.2s ease;
+}
+@keyframes fadeIn { from{opacity:0} to{opacity:1} }
+.menu-modal {
+  position: relative; background: linear-gradient(160deg, #031418, #05252e);
+  border: 2px solid rgba(60,200,190,0.32); border-radius: 24px; padding: 32px 28px 24px;
+  max-width: 90vw; max-height: 90vh; overflow-y: auto;
+  display: flex; flex-direction: column; align-items: center; gap: 20px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.7); animation: popUp 0.25s cubic-bezier(0.34,1.56,0.64,1);
+}
+@keyframes popUp { from{transform:scale(0.85);opacity:0} to{transform:scale(1);opacity:1} }
+.menu-close {
+  position: absolute; top: 12px; right: 16px; background: rgba(80,230,220,0.1); color: #edfffe;
+  border: 1px solid rgba(60,200,190,0.28); border-radius: 50%; width: 32px; height: 32px;
+  font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s; font-family: inherit;
+}
+.menu-close:hover { background: rgba(200,50,70,0.4); }
+.misty-menu-image {
+  max-width: 100%; max-height: 62vh; border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5); border: 2px solid rgba(60,200,190,0.22);
+}
+.menu-select-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; justify-content: center; }
+.drink-dropdown {
+  font-family: 'Press Start 2P', cursive; font-size: 7.5px; padding: 10px 14px;
+  border-radius: 10px; border: 2px solid rgba(60,200,190,0.4);
+  background: rgba(3,15,20,0.93); color: #7eeee8; cursor: pointer; outline: none;
+}
+.drink-dropdown option { background: #031418; }
+.timer-box {
+  background: linear-gradient(160deg, rgba(3,18,25,0.92), rgba(6,45,60,0.92));
+  border: 2px solid rgba(60,200,190,0.3); border-radius: 24px; padding: 20px 16px 28px;
+  color: #edfffe; z-index: 150; backdrop-filter: blur(18px);
+  display: flex; flex-direction: column; align-items: center; gap: 12px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.6), inset 0 1px 0 rgba(80,240,230,0.06);
+  cursor: grab; user-select: none; box-sizing: border-box; transition: box-shadow 0.2s;
+}
+.timer-box:active { cursor: grabbing; }
+.focus-mode { border-color: rgba(60,200,190,0.5); }
+.break-mode { border-color: rgba(244,160,96,0.4); }
+.timer-mode-label { font-size: 7px; letter-spacing: 2px; opacity: 0.82; text-transform: uppercase; }
+.focus-mode .timer-mode-label { color: #7eeee8; }
+.break-mode .timer-mode-label { color: #f4c080; }
+.timer-ring-wrap { position: relative; width: 130px; height: 130px; display: flex; align-items: center; justify-content: center; }
+.timer-ring { position: absolute; top: 0; left: 0; }
+.ring-bg { fill: none; stroke: rgba(80,240,230,0.08); stroke-width: 8; }
+.ring-fg { fill: none; stroke-width: 8; stroke-linecap: round; transition: stroke-dasharray 1s linear; }
+.focus-mode .ring-fg { stroke: #50ddd8; filter: drop-shadow(0 0 8px #20b0a8); }
+.break-mode .ring-fg { stroke: #f4a060; filter: drop-shadow(0 0 8px #c07030); }
+.timer-time { font-family: 'Press Start 2P', cursive; font-size: 22px; color: #edfffe; letter-spacing: 3px; z-index: 1; text-shadow: 0 0 20px rgba(80,220,210,0.3); }
+.timer-controls { display: flex; gap: 8px; }
+.t-btn {
+  font-family: 'Press Start 2P', cursive; font-size: 13px;
+  background: rgba(80,230,220,0.08); color: #edfffe;
+  border: 1px solid rgba(60,200,190,0.2); border-radius: 10px;
+  width: 38px; height: 38px; cursor: pointer; transition: background 0.15s, transform 0.1s;
+  display: flex; align-items: center; justify-content: center;
+}
+.t-btn:hover { background: rgba(60,200,190,0.2); transform: scale(1.08); }
+.t-btn:active { transform: scale(0.94); }
+.timer-settings {
+  display: flex; flex-direction: column; gap: 10px; width: 100%; font-size: 7px;
+  background: rgba(0,0,0,0.3); border-radius: 12px; padding: 12px;
+  box-sizing: border-box; border: 1px solid rgba(60,200,190,0.1);
+}
+.timer-settings label { display: flex; justify-content: space-between; align-items: center; gap: 8px; color: rgba(200,250,248,0.8); }
+.timer-settings input {
+  font-family: 'Press Start 2P', cursive; font-size: 10px; width: 50px; padding: 6px;
+  border-radius: 8px; border: 1px solid rgba(60,200,190,0.3);
+  background: rgba(3,12,16,0.88); color: #7eeee8; text-align: center; outline: none;
+}
+.save-btn {
+  font-family: 'Press Start 2P', cursive; font-size: 8px; padding: 8px;
+  background: linear-gradient(135deg, #30b8b0, #188880); color: #edfffe;
+  border: none; border-radius: 10px; cursor: pointer; box-shadow: 0 4px 0 #0a5850; transition: transform 0.1s;
+}
+.save-btn:hover { transform: translateY(-1px); }
+.save-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #0a5850; }
+.timer-coin-hint { font-size: 6px; color: rgba(80,220,210,0.4); text-align: center; }
+.resize-handle { position: absolute; bottom: 6px; right: 10px; font-size: 14px; color: rgba(80,230,220,0.28); cursor: se-resize; line-height: 1; transition: color 0.2s; }
+.resize-handle:hover { color: rgba(60,210,200,0.65); }
