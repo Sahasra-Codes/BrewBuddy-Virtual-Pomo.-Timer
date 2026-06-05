@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Analytics } from "@vercel/analytics/react";
+
 import App from './App';
 import Home from './Home';
 import Cradles from "./server-cafes/cradles/Cradles";
@@ -11,9 +13,11 @@ import Prince from "./server-cafes/prince/Prince";
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
 root.render(
   <React.StrictMode>
     <Router>
+      <Analytics />
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/home" element={<Home />} />
@@ -27,4 +31,3 @@ root.render(
 );
 
 reportWebVitals();
-
